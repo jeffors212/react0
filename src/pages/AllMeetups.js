@@ -11,7 +11,7 @@ function AllMeetupsPage() {
   useEffect(()=>{ 
     setIsLoading(true);
     fetch(
-    'https://react-51f76-default-rtdb.firebaseio.com/'
+    'https://react-51f76-default-rtdb.firebaseio.com/meetups.json'
   
     ).then(response =>{
       return response.json();
@@ -32,18 +32,17 @@ function AllMeetupsPage() {
 
  
 
-  if(isLoading){
-    return(
+
      <section>
-      <p>Loading ...</p>
+      
     </section>
-    );
-  }
 
     return <section>
+      {isLoading ? <p>Loading ...</p> :
+      <>
         <h1>All Meetups</h1>
-       <MeetupList meetups={loadedMeetups}/>
-       
+        <MeetupList meetups={loadedMeetups}/>
+      </> }
     </section>
 }
 
